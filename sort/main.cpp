@@ -112,7 +112,7 @@ int main(int argc, char* argv[]) {
 			type = 3;
 			cout<<"You choose quick_sort!"<<endl;
 		} else {
-			cout<<"Error:wrong way!"<<endl;
+			cout<<"Error:you can input insert, merge, bubble or quick to sort!"<<endl;
 			return -1;
 		}
 	}
