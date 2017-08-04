@@ -47,6 +47,39 @@ void merge1(int aa[], int bb[], int left, int right, int mid) {
 	}
 }
 
+void bubble_sort(int aa[], int len) {
+	for(int i=0;i<len;++i) {
+		for(int j=len;j>i;--j) {
+			if(aa[j] < aa[j-1]) {
+				int itemp = aa[j];
+				aa[j] = aa[j-1];
+				aa[j-1] = itemp;
+			}
+		}
+	}
+}
+
+void quick_sort(int aa[], int left, int right) {
+	if(left >= right)
+		return;
+	int i = left;
+	int j = right;
+	int key = aa[i];
+	int itemp;
+	while(i<j) {
+		while(i<j && aa[i]<=key)i++;
+		itemp = aa[i];
+		aa[i] = aa[j];
+		aa[j] = itemp;
+		while(i<j && aa[j]>=key)j--;
+		itemp = aa[j];
+		aa[j] = aa[i];
+		aa[i] = itemp;
+	}
+	quick_sort(aa,left,i-1);
+	quick_sort(aa,i+1,right);
+}
+
 void outPrint(int aa[], int len) {
 	for(int i=0;i<len;++i) {
 		cout<<aa[i]<<" ";
@@ -72,7 +105,13 @@ int main(int argc, char* argv[]) {
 		} else if(strcmp(argv[1],"merge") == 0){
 			type = 1;
 			cout<<"You choose merge_sort!"<<endl;
-		} else{
+		} else if(strcmp(argv[1],"bubble") == 0){
+			type = 2;
+			cout<<"You choose bubble_sort!"<<endl;
+		} else if(strcmp(argv[1],"quick") == 0){
+			type = 3;
+			cout<<"You choose quick_sort!"<<endl;
+		} else {
 			cout<<"Error:wrong way!"<<endl;
 			return -1;
 		}
@@ -91,8 +130,12 @@ int main(int argc, char* argv[]) {
 	gettimeofday(&ts,NULL);
 	if(type == 0)
 		insert_sort(aa,len);
-	else
+	else if(type == 1)
 		merge_sort(aa,len);
+	else if(type == 2)
+		bubble_sort(aa,len);
+	else
+		quick_sort(aa,0,len-1);
 	gettimeofday(&te,NULL);
 	if(len <= 100){
 		cout<<"After sort:"<<endl;
