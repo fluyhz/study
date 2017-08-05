@@ -5,6 +5,13 @@
 #include "string.h"
 using namespace std;
 
+enum Sort_Type {
+	INSERT_SORT,
+	MERGE_SORT,
+	BUBBLE_SORT,
+	QUICK_SORT
+};
+
 void insert_sort(int aa[], int len) {
 	for(int i=1;i<len;++i) {
 		int key = aa[i];
@@ -95,21 +102,21 @@ void randArray(int aa[], int len, int range) {
 
 int main(int argc, char* argv[]) {
 	int len = 10;
-	int type = 0;
+	Sort_Type type = INSERT_SORT;
 	if(argc == 1)
 		cout<<"We use insert_sort now!"<<endl;
 	if(argc >= 2){
 		if(strcmp(argv[1],"insert") == 0){
-			type = 0;
+			type = INSERT_SORT;
 			cout<<"You choose insert_sort!"<<endl;
 		} else if(strcmp(argv[1],"merge") == 0){
-			type = 1;
+			type = MERGE_SORT;
 			cout<<"You choose merge_sort!"<<endl;
 		} else if(strcmp(argv[1],"bubble") == 0){
-			type = 2;
+			type = BUBBLE_SORT;
 			cout<<"You choose bubble_sort!"<<endl;
 		} else if(strcmp(argv[1],"quick") == 0){
-			type = 3;
+			type = QUICK_SORT;
 			cout<<"You choose quick_sort!"<<endl;
 		} else {
 			cout<<"Error:you can input insert, merge, bubble or quick to sort!"<<endl;
@@ -121,18 +128,18 @@ int main(int argc, char* argv[]) {
 		len = (len <= 0)?10:len;
 	}
 	timeval ts,te;
-	int *aa = new int[len];// = {3,7,3,5,8,12,32,6,15,10};
+	int *aa = new int[len];
 	randArray(aa, len, 10000);
 	if(len <= 100){
 		cout<<"Before sort:"<<endl;
 		outPrint(aa,len);
 	}
 	gettimeofday(&ts,NULL);
-	if(type == 0)
+	if(type == INSERT_SORT)
 		insert_sort(aa,len);
-	else if(type == 1)
+	else if(type == MERGE_SORT)
 		merge_sort(aa,len);
-	else if(type == 2)
+	else if(type == BUBBLE_SORT)
 		bubble_sort(aa,len);
 	else
 		quick_sort(aa,0,len-1);

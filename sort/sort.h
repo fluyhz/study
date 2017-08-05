@@ -1,3 +1,6 @@
+#ifndef SORT_H_20170805
+#define SORT_H_20170805
+
 void insert_sort(int aa[], int len);
 
 void merge_sort(int aa[], int len);
@@ -13,3 +16,5 @@ void quick_sort(int aa[], int left, int right);
 void outPrint(int aa[], int len);
 
 void randArray(int aa[], int len, int range);
+
+#endif
